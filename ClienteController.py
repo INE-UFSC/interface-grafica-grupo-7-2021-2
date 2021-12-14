@@ -40,7 +40,7 @@ class ClienteController:
 
                 try:
                     if nome != '':
-                        resultado = 'Nome: ' + str(nome) + ', Codigo: ' + str(self.busca_nome(nome))
+                        resultado = self.busca_nome(nome)
                     elif codigo != '': 
                         codigo = int(codigo)
                         resultado = str(self.busca_codigo(codigo))
@@ -61,7 +61,7 @@ class ClienteController:
         try:
             return self.__clientes[codigo]
         except KeyError:
-            raise KeyError
+            return 'Cliente não cadastrado'
 
     # cria novo OBJ cliente e adiciona ao dict
     def adiciona_cliente(self, codigo, nome):
@@ -70,6 +70,6 @@ class ClienteController:
     def busca_nome(self, nome):
         for key, val in self.__clientes.items():
             if val.nome == nome:
-                return key 
+                return 'Nome: ' + str(nome) + ', Codigo: ' + str(key) 
 
-        raise LookupError
+        return 'Cliente não cadastrado'
