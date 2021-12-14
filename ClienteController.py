@@ -21,15 +21,34 @@ class ClienteController:
             elif event == 'Cadastrar':
                 #FIX ME - implementar lógica de cadastro
 
-                    self.adiciona_cliente(values['codigo'], values['nome'])
-                    resultado = 'Cliente Cadastrado'
+                try:
+                    codigo = int(values['codigo'])
+                    nome = str(values['nome'])
+                    if nome != '':
+                        self.adiciona_cliente(codigo, values['nome'])
+                        resultado = 'Cliente Cadastrado'
+                    else:
+                        resultado = 'Não foi possivel cadastrar o cliente'
+                except ValueError:
+                    resultado = 'Não foi possivel cadastrar o cliente'
 
             elif event == 'Consultar':
                 #FIX ME - implementar lógica de consulta
                 
-                    resultado = self.busca_codigo(values['codigo'])
+                nome = values['nome']
+                codigo = values['codigo']
 
-                    resultado = self.busca_nome(values['nome'])
+                try:
+                    if nome != '':
+                        resultado = 'Nome: ' + str(nome) + ', Codigo: ' + str(self.busca_nome(nome))
+                    elif codigo != '': 
+                        codigo = int(codigo)
+                        resultado = str(self.busca_codigo(codigo))
+                    else:
+                        resultado = 'Cliente não cadastrado'
+
+                except ValueError:
+                    resultado = 'Cliente não cadastrado'
             
             if resultado != '':
                 dados = str(resultado)
