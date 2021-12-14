@@ -22,10 +22,10 @@ class ClienteController:
                 #FIX ME - implementar lógica de cadastro
 
                 try:
-                    codigo = int(values['codigo'])
+                    codigo = values['codigo']
                     nome = str(values['nome'])
-                    if nome != '':
-                        self.adiciona_cliente(codigo, values['nome'])
+                    if nome != '' and codigo.isdigit():
+                        self.adiciona_cliente(int(codigo), values['nome'])
                         resultado = 'Cliente Cadastrado'
                     else:
                         resultado = 'Não foi possivel cadastrar o cliente'
