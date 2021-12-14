@@ -21,17 +21,15 @@ class ClienteController:
             elif event == 'Cadastrar':
                 #FIX ME - implementar lógica de cadastro
 
-                if isinstance(values['nome'], str) == True and isinstance(values['codigo'], int) == True:
                     self.adiciona_cliente(values['codigo'], values['nome'])
+                    resultado = 'Cliente Cadastrado'
 
             elif event == 'Consultar':
                 #FIX ME - implementar lógica de consulta
-
-                if isinstance(values, int):
-                    self.busca_codigo(values)
                 
-                elif isinstance(values, str):
-                    self.busca_nome(values)
+                    resultado = self.busca_codigo(values['codigo'])
+
+                    resultado = self.busca_nome(values['nome'])
             
             if resultado != '':
                 dados = str(resultado)
